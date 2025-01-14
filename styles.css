@@ -1,0 +1,345 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
+
+/* Cijela pozadinska slika */
+body {
+  background: url("images/background0.jpg") no-repeat center center fixed;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== GORNJA TRAKA (HEADER) ===== */
+.header {
+  color: #b3bfb8;
+  display: grid;
+  grid-template-columns: 9fr auto 0.1fr;
+  align-items: center;
+  height: 80px;
+  background-color: #1C2025; 
+}
+.header > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1,1rem;
+  font-weight: bold;
+  padding: 10px;
+  border-right: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Account gumb */
+.account-segment {
+  background-color: white;
+  cursor: pointer;
+}
+
+/* Ako želite da se i "whiteboard-main" i ostali blokovi ne vide bijelo,
+   maknite sljedeće background boje ili im dajte poluprozirnu
+   Ovdje stavljam transparent da ne prekriju sliku. */
+.whiteboard-main { background-color: transparent; }
+.whiteboard-secondary { background-color: transparent; }
+.functional-space { background-color: transparent; }
+.calendar { background-color: transparent; }
+.focus-function { 
+  background-color: transparent; 
+  border-right: none; 
+}
+
+/* ===== Glavni prostor (MAIN-CONTAINER) ===== */
+.main-container {
+  flex: 1;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.main-content {
+  padding: 20px;
+  text-align: center;
+}
+.background-note {
+  font-style: italic;
+  color: #555;
+}
+
+/* ===== Ikona za promjenu pozadine (donji desni kut) ===== */
+.background-picker-icon {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  z-index: 2000;
+}
+.background-picker-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ===== Pop-up za odabir pozadine ===== */
+.background-picker-popup {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 3000;
+}
+.bg-picker-content {
+  background-color: #fff;
+  padding: 20px;
+  width: 400px;
+  border-radius: 8px;
+  position: relative;
+  text-align: center;
+}
+.bg-picker-content h2 {
+  margin-bottom: 20px;
+}
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 18px;
+}
+.bg-option {
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+.bg-option img {
+  max-width: 100%;
+  height: auto;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  transition: transform 0.2s;
+}
+.bg-option img:hover {
+  transform: scale(1.02);
+  border-color: #888;
+}
+
+/* ===== Board Container i liste ===== */
+#boardsContainer {
+  display: flex;
+  align-items: flex-start;
+  padding-left: 30px;
+}
+
+.no-lists-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; 
+}
+
+.create-list-box {
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+}
+.new-list-board {
+  background-color: rgba(255,255,255,0.3);
+  border: 2px dashed #ccc;
+  border-radius: 6px;
+  width: 250px;
+  margin-right: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.create-list-again-button {
+  background-color: #007acc;
+  color: #fff;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.create-list-again-button:hover {
+  background-color: #005999;
+}
+
+/* "lista" */
+.board-list {
+  background-color: #f4f4f4;
+  border-radius: 6px;
+  padding: 10px;
+  width: 250px;
+  margin-right: 20px;
+  display: inline-block;
+  vertical-align: top;
+}
+.board-list h3 {
+  margin-top: 0;
+}
+.task-cards {
+  margin-top: 10px;
+}
+.close-list-btn {
+  float: right;
+  cursor: pointer;
+  margin-left: 10px;
+  color: #666;
+  font-weight: bold;
+}
+.close-list-btn:hover {
+  color: red;
+}
+.close-list-btn img,
+.close-task-btn img {
+  width: 15px;       
+  height: 15px;
+  object-fit: cover; 
+}
+/* "task" */
+.card {
+  position: relative;
+  padding: 8px;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 2px rgba(0,0,0,0.1);
+  padding: 8px;
+  margin-bottom: 8px;
+}
+.add-task-button {
+  margin-top: 10px;
+  background-color: transparent;
+  color: black;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  float: left;
+}
+.add-task-button img,
+.add-task-button img{
+  width: 11px;     
+  height: 11px;
+  object-fit: cover; 
+}
+.close-task-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+}
+
+.close-task-btn img {
+  width: 16px;
+  height: 16px;
+}
+
+/* ===== Account POP-UP STILOVI ===== */
+.account-popup-container {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 1000;
+}
+.account-popup-content {
+  background-color: #fff;
+  padding: 20px;
+  width: 350px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  position: relative;
+}
+.close-btn {
+  position: absolute;
+  top: 10px; right: 10px;
+  font-size: 18px;
+  cursor: pointer;
+  color: #000;
+  font-weight: bold;
+}
+.account-popup-content h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+.account-popup-content label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+}
+.account-popup-content input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+.account-popup-content button {
+  background-color: #007acc;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  margin-bottom: 10px;
+}
+.account-popup-content button:hover {
+  background-color: #005999;
+}
+.switch-form-btn {
+  color: #007acc;
+  font-size: 0.9rem;
+  text-align: center;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+/* Logged-in account gumb */
+.account-segment.logged-in {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;  
+  font-weight: bold;
+  background-color: white;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+/* Logout popup */
+.logout-popup-container {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 1000;
+}
+.logout-popup-content {
+  background-color: #fff;
+  padding: 20px;
+  width: 320px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  position: relative;
+  text-align: center;
+}
+.logout-popup-content h2 {
+  margin-bottom: 20px;
+}
